@@ -2,7 +2,8 @@
 
 namespace UKLFR\Json2Xlsx;
 
-class Fetcher {
+class Fetcher
+{
     static function getDataFromDB($config, $schema, $view, $db_settings = false)
     {
         // setting up PDO
