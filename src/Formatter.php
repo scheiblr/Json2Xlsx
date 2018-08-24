@@ -1,6 +1,6 @@
 <?php
 
-namespace Json2Xlsx;
+namespace UKLFR\Json2Xlsx;
 
 class Formatter
 {
