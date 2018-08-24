@@ -2,8 +2,6 @@
 
 namespace Json2Xlsx;
 
-require_once 'vendor/autoload.php';
-
 class Formatter
 {
     static function println($text)
