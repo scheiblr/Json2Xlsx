@@ -18,7 +18,7 @@ class Formatter
         }
     }
 
-    static function titleToRows($titles, $funcIsHeadline = self::isHeadline)
+    static function titleToRows($titles, $funcIsHeadline = UKLFR\Json2Xlsx\isHeadline)
     {
         $result = [0 => []];
 
@@ -31,7 +31,7 @@ class Formatter
         return $result;
     }
 
-    private static function titleToRowsHelp(&$array, $titles, &$col, $row, $depth = 0, $funcIsHeadline = self::isHeadline)
+    private static function titleToRowsHelp(&$array, $titles, &$col, $row, $depth = 0, $funcIsHeadline = UKLFR\Json2Xlsx\isHeadline)
     {
         foreach ($titles as $key => $title) {
             if (empty($array[$row])) {
@@ -41,7 +41,7 @@ class Formatter
             // recursion call
             if (is_array($title)) {
                 // regular step
-                if (!is_numeric($key) && !isHeadline($key)) {
+                if (!is_numeric($key) && !$funcIsHeadline($key)) {
                     $array[$row][$col] = $key;
                 }
                 $row++;
@@ -78,7 +78,7 @@ class Formatter
         return $max_depth;
     }
 
-    static function fillSheet(&$objSheet, $sheetName, $patients, $freezeCols = 1, $funcIsHeadline = self::isHeadline)
+    static function fillSheet(&$objSheet, $sheetName, $patients, $freezeCols = 1, $funcIsHeadline = UKLFR\Json2Xlsx\isHeadline)
     {
         // get headlines
         $headlines = [];
