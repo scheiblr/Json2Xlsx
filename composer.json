@@ -1,0 +1,7 @@
+{
+  "name": "uklfr/json2xlsx",
+  "description": "given a nested json a xlsx sheet is generated",
+  "require": {
+    "phpoffice/phpspreadsheet": "^1.4"
+  }
+}
