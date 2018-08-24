@@ -3,7 +3,7 @@
 namespace UKLFR\Json2Xlsx;
 
 class Fetcher {
-    static function getPatientsFromDB($config, $schema, $view, $db_settings = false)
+    static function getDataFromDB($config, $schema, $view, $db_settings = false)
     {
         // setting up PDO
         $dbLocation = "{$config['type']}:dbname={$config['db']};host={$config['host']}";
@@ -41,7 +41,7 @@ class Fetcher {
         return $result;
     }
 
-    static function getPatientsFromDBFunc($config, $schema, $function, $param, $db_settings = false)
+    static function getDataFromDBFunc($config, $schema, $function, $param, $db_settings = false)
     {
         // setting up PDO
         $dbLocation = "{$config['type']}:dbname={$config['db']};host={$config['host']}";
