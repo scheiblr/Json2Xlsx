@@ -34,4 +34,4 @@ $export = Fetcher::getDataFromDB($conn, $schema, $view);
 // format
 Formatter::generateXLS([
     'patients' => $export
-], 'example1.xlsx', 4);
+], 'example1.xlsx', 3);
