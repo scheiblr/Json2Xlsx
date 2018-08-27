@@ -5,8 +5,8 @@ require_once '../vendor/autoload.php';
 require_once '../src/Fetcher.php';
 require_once '../src/Formatter.php';
 
-use \UKLFR\Json2Xlsx\Formatter;
-use \UKLFR\Json2Xlsx\Fetcher;
+use UKLFR\Json2Xlsx\Formatter;
+use UKLFR\Json2Xlsx\Fetcher;
 
 // load .env file in order to get db information
 $dotenv = new Dotenv\Dotenv(__DIR__);
