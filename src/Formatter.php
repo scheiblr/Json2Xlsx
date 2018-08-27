@@ -78,7 +78,7 @@ class Formatter
         return $max_depth;
     }
 
-    static function entitiyToRow($entity, $cols, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
+    static function entitiyToRow($entity, $cols, $freezeCols, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
         $maxEntriesPerCol = 1;
         foreach ($entity as $field) {
@@ -90,7 +90,7 @@ class Formatter
         // create array
         $result = array_fill(0, $maxEntriesPerCol, array_fill(0, $cols, NULL));
 
-        $patientNumeric = array_values($entity);
+//        $patientNumeric = array_values($entity);
 
         // write data
         $col = 0;
@@ -132,10 +132,12 @@ class Formatter
             }
         }
 
-        // fill id fields respectevily
+        // fill freezeCols fields respectevily
+        // i.e. fill empty rows
         for ($i = 1; $i < sizeof($result); ++$i) {
-            $result[$i][0] = $result[$i - 1][0];
-            $result[$i][1] = $result[$i - 1][1];
+            for ($j=0; $j < $freezeCols; ++$j) {
+                $result[$i][$j] = $result[$i - 1][$j];
+            }
         }
 
         return $result;
@@ -184,7 +186,7 @@ class Formatter
         $depth = self::array_depth($titles) + ($headlines !== []);
 
         // freeze rows
-        $objSheet->freezePaneByColumnAndRow($freezeCols, $depth + 1);
+        $objSheet->freezePaneByColumnAndRow($freezeCols+1, $depth + 1);
 
         // if there are headlines, add it to the top of the grid
         if (count($headlines) > 0)
@@ -196,7 +198,7 @@ class Formatter
 
 //    println('xml 2 array');
         foreach ($entities as $entity) {
-            $rows = self::entitiyToRow($entity, $cols);
+            $rows = self::entitiyToRow($entity, $cols, $freezeCols);
 
             foreach ($rows as $row) {
                 array_push($grid, $row);
