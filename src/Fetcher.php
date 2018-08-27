@@ -66,4 +66,8 @@ class Fetcher
         // perform query
         return  self::query($conn, "SELECT $schema.$function($param) as export;");
     }
+
+    static function getDataFromJsonFile($file, $key='export') {
+        return [$key => json_decode(file_get_contents($file), true)];
+    }
 }
