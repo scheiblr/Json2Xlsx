@@ -12,6 +12,9 @@
     "php": ">=7.0",
     "phpoffice/phpspreadsheet": "^1.4"
   },
+  "require-dev": {
+    "vlucas/phpdotenv": "^2.5"
+  },
   "autoload": {
     "psr-4": {
       "UKLFR\\Json2Xlsx\\": "src/"

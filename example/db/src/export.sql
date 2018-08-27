@@ -29,16 +29,14 @@ select coalesce(json_agg(tmp),
     {
       "document_id": null,
       "visit_date": null,
-      "to_delete": null,
-      "values": [ { "name": null , "value":null } ]
+      "to_delete": null
     }
   ]' :: JSON)
   from
   (select
     document_id,
     visit_date,
-    to_delete,
-    f_get_values(document_id) as lab_values
+    to_delete
   from
     documentation_entity
   where
@@ -46,23 +44,34 @@ select coalesce(json_agg(tmp),
   ) AS tmp
 $$ language sql;
 
--- data export view
-create view v_export as
+-- view which contains all data
+create or replace view v_all_data as
 select
+  'patient data' as "headline_p",
   patient_id,
   lastname,
   firstname,
   deceased,
-  f_get_documents(patient_id) as documents
+  'documentation dates' as "headline_dd",
+  f_get_documents(patient_id) as documents,
+  'lab values' as "headline_lv",
+  f_get_values(document_id) as lab_values
 from patient
+  join documentation_entity using(patient_id)
 order by patient_id;
 
+-- data export view
+create or replace view v_export as
+select coalesce(json_agg(tmp), '[]' :: JSON) AS export
+from (select * from v_all_data)
+as tmp;
+
 -- data export function
-create function f_export(INT [])
-  returns setof v_export
+create or replace function f_export(INT [])
+  returns setof v_all_data
 as
 $$
 select *
-from v_export
+from v_all_data
   where patient_id = ANY($1)
 $$ language sql;
