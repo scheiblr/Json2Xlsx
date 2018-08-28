@@ -16,7 +16,7 @@ $dotenv->load();
 $config = [
     'type' => 'pgsql', // could also be e.g. mysql, this is a PDO setting
     'db' => getenv('POSTGRES_DB'),
-    'host' => 'localhost',
+    'host' => getenv('POSTGRES_HOST'),
     'user' => getenv('POSTGRES_USER'),
     'password' => getenv('POSTGRES_PASSWORD')
 ];
