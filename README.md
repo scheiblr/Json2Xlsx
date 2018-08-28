@@ -25,3 +25,6 @@ This package was tested and developed under PHP7 with the following extensions a
     - php_gd2
     
 Maybe it will work with PHP>=5.6, but we did not test this.
+
+## License
+This software is distributed by [MIT License](LICENSE).
