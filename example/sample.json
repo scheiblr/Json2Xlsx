@@ -1,0 +1,1094 @@
+[
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 53,
+    "visit_date": "2012-10-31",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 3,
+    "lastname": "Inam",
+    "firstname": "Della",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 77,
+    "visit_date": "2013-01-11",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 3,
+    "lastname": "Inam",
+    "firstname": "Della",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IGA",
+        "value": 0.19295536825502968
+      },
+      {
+        "name": "IGM",
+        "value": 0.0026166800009936875
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 103,
+    "visit_date": "2016-05-11",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 3,
+    "lastname": "Inam",
+    "firstname": "Della",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IGM",
+        "value": 0.18225928771090338
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 183,
+    "visit_date": "2006-03-03",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 3,
+    "lastname": "Inam",
+    "firstname": "Della",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Monocytes",
+        "value": 0.9657275480457951
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 187,
+    "visit_date": "2000-12-25",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 3,
+    "lastname": "Inam",
+    "firstname": "Della",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 20,
+    "visit_date": "2008-03-04",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 6,
+    "lastname": "Kyle",
+    "firstname": "Goertzen",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "MPV fl",
+        "value": 0.343443231713504
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 106,
+    "visit_date": "2007-01-30",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 6,
+    "lastname": "Kyle",
+    "firstname": "Goertzen",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 237,
+    "visit_date": "2011-08-27",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 6,
+    "lastname": "Kyle",
+    "firstname": "Goertzen",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 145,
+    "visit_date": "2015-03-23",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 13,
+    "lastname": "VuHoan",
+    "firstname": "Lancaster",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 234,
+    "visit_date": "2004-07-09",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 13,
+    "lastname": "VuHoan",
+    "firstname": "Lancaster",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Hct",
+        "value": 0.8137495159136462
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 189,
+    "visit_date": "2014-08-01",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 24,
+    "lastname": "Caryn",
+    "firstname": "McGowan",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 218,
+    "visit_date": "2011-12-30",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 24,
+    "lastname": "Caryn",
+    "firstname": "McGowan",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 160,
+    "visit_date": "2015-04-10",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 35,
+    "lastname": "Al",
+    "firstname": "Debnam",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Hct",
+        "value": 0.7027689297131784
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 42,
+    "visit_date": "2009-04-02",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 36,
+    "lastname": "Anabal",
+    "firstname": "Pilote",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 122,
+    "visit_date": "2016-12-03",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 36,
+    "lastname": "Anabal",
+    "firstname": "Pilote",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 229,
+    "visit_date": "2002-02-08",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 36,
+    "lastname": "Anabal",
+    "firstname": "Pilote",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 31,
+    "visit_date": "2003-01-10",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 43,
+    "lastname": "Mellisent",
+    "firstname": "Theocharakis",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Hgb",
+        "value": 0.40005836547996765
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 105,
+    "visit_date": "2007-07-01",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 43,
+    "lastname": "Mellisent",
+    "firstname": "Theocharakis",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 110,
+    "visit_date": "2007-12-20",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 43,
+    "lastname": "Mellisent",
+    "firstname": "Theocharakis",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 227,
+    "visit_date": "2014-09-13",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 45,
+    "lastname": "Peggie",
+    "firstname": "Kell",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 116,
+    "visit_date": "2002-06-24",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 47,
+    "lastname": "Ebrahim",
+    "firstname": "Asdel",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 144,
+    "visit_date": "2011-08-22",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 47,
+    "lastname": "Ebrahim",
+    "firstname": "Asdel",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 93,
+    "visit_date": "2016-01-15",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 49,
+    "lastname": "Sayre",
+    "firstname": "Aumoine",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 34,
+    "visit_date": "2000-01-05",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 51,
+    "lastname": "Connie",
+    "firstname": "Saunders",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IGM",
+        "value": 0.791148511558849
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 79,
+    "visit_date": "2012-10-27",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 51,
+    "lastname": "Connie",
+    "firstname": "Saunders",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Vitamin B12",
+        "value": 0.8520996061501239
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 222,
+    "visit_date": "2016-06-16",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 51,
+    "lastname": "Connie",
+    "firstname": "Saunders",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 244,
+    "visit_date": "2004-05-06",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 51,
+    "lastname": "Connie",
+    "firstname": "Saunders",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 18,
+    "visit_date": "2010-03-29",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 52,
+    "lastname": "Andria",
+    "firstname": "Hoeler",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 102,
+    "visit_date": "2003-04-23",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 52,
+    "lastname": "Andria",
+    "firstname": "Hoeler",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Eosinophils",
+        "value": 0.7169584771701201
+      },
+      {
+        "name": "MCH",
+        "value": 0.5758679125080053
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 146,
+    "visit_date": "2005-01-07",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 52,
+    "lastname": "Andria",
+    "firstname": "Hoeler",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Platelets",
+        "value": 0.10564115603550017
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 166,
+    "visit_date": "2003-03-11",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 52,
+    "lastname": "Andria",
+    "firstname": "Hoeler",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 204,
+    "visit_date": "2010-05-07",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 52,
+    "lastname": "Andria",
+    "firstname": "Hoeler",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 133,
+    "visit_date": "2015-08-17",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 55,
+    "lastname": "Andreana",
+    "firstname": "Trader",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 148,
+    "visit_date": "2015-10-10",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 55,
+    "lastname": "Andreana",
+    "firstname": "Trader",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 66,
+    "visit_date": "2005-05-02",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 62,
+    "lastname": "Calypso",
+    "firstname": "Chronowic",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Haptoglobin",
+        "value": 0.26625680626389325
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 231,
+    "visit_date": "2004-08-04",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 62,
+    "lastname": "Calypso",
+    "firstname": "Chronowic",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 238,
+    "visit_date": "2005-01-23",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 62,
+    "lastname": "Calypso",
+    "firstname": "Chronowic",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 12,
+    "visit_date": "2017-04-02",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 67,
+    "lastname": "Arvin",
+    "firstname": "Valerien",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 67,
+    "visit_date": "2006-08-14",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 67,
+    "lastname": "Arvin",
+    "firstname": "Valerien",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Hgb",
+        "value": 0.9054542000450542
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 85,
+    "visit_date": "2004-05-28",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 67,
+    "lastname": "Arvin",
+    "firstname": "Valerien",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 173,
+    "visit_date": "2002-02-17",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 67,
+    "lastname": "Arvin",
+    "firstname": "Valerien",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "Bilirubin",
+        "value": 0.8817052709782447
+      },
+      {
+        "name": "Haptoglobin",
+        "value": 0.5070800959236572
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 208,
+    "visit_date": "2002-04-01",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 67,
+    "lastname": "Arvin",
+    "firstname": "Valerien",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IGA",
+        "value": 0.39533626676873257
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 35,
+    "visit_date": "2005-10-05",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 75,
+    "lastname": "Erlene",
+    "firstname": "Wyant",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 69,
+    "visit_date": "2003-07-15",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 75,
+    "lastname": "Erlene",
+    "firstname": "Wyant",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 111,
+    "visit_date": "2016-08-11",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 75,
+    "lastname": "Erlene",
+    "firstname": "Wyant",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IGE",
+        "value": 0.6900639357690654
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 175,
+    "visit_date": "2007-08-24",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 75,
+    "lastname": "Erlene",
+    "firstname": "Wyant",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 1,
+    "visit_date": "2000-06-09",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 78,
+    "lastname": "Kym",
+    "firstname": "Calder",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 37,
+    "visit_date": "2004-06-09",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 78,
+    "lastname": "Kym",
+    "firstname": "Calder",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 81,
+    "visit_date": "2003-06-05",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 78,
+    "lastname": "Kym",
+    "firstname": "Calder",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 126,
+    "visit_date": "2015-11-09",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 78,
+    "lastname": "Kym",
+    "firstname": "Calder",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 170,
+    "visit_date": "2005-02-07",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 78,
+    "lastname": "Kym",
+    "firstname": "Calder",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "RBC",
+        "value": 0.41103740943452305
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 88,
+    "visit_date": "2006-10-05",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 80,
+    "lastname": "Tarah",
+    "firstname": "Capps",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 114,
+    "visit_date": "2017-01-13",
+    "to_delete": false,
+    "headline_p": "patient data",
+    "patient_id": 80,
+    "lastname": "Tarah",
+    "firstname": "Capps",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 59,
+    "visit_date": "2006-02-09",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 83,
+    "lastname": "Claudine",
+    "firstname": "Bluethner",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 190,
+    "visit_date": "2016-04-13",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 83,
+    "lastname": "Claudine",
+    "firstname": "Bluethner",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "RET",
+        "value": 0.975585877358601
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 186,
+    "visit_date": "2001-04-11",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 90,
+    "lastname": "Wilford",
+    "firstname": "Braun",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IG",
+        "value": 0.8293934496584976
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 5,
+    "visit_date": "2004-06-21",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 99,
+    "lastname": "Vance",
+    "firstname": "Mayne",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 9,
+    "visit_date": "2016-03-09",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 99,
+    "lastname": "Vance",
+    "firstname": "Mayne",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": "IGM",
+        "value": 0.21116569059634605
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 51,
+    "visit_date": "2004-02-19",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 99,
+    "lastname": "Vance",
+    "firstname": "Mayne",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  },
+  {
+    "headline_dd": "documentation dates",
+    "document_id": 92,
+    "visit_date": "2009-12-02",
+    "to_delete": true,
+    "headline_p": "patient data",
+    "patient_id": 99,
+    "lastname": "Vance",
+    "firstname": "Mayne",
+    "deceased": true,
+    "headline_lv": "lab values",
+    "lab_values": [
+      {
+        "name": null,
+        "value": null
+      }
+    ]
+  }
+]

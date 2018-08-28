@@ -72,6 +72,6 @@ class Fetcher
     }
 
     static function getDataFromJsonFile($filename) {
-        return [self::$fieldName => json_decode(file_get_contents($filename), true)];
+        return json_decode(file_get_contents($filename), true);
     }
 }
