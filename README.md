@@ -1,8 +1,20 @@
 # Json2Xlsx
-
 This small framework allows to export 1:n data from sql and show them in one xlsx file. Therefore, we offer some loader functions as well as some formatting tools.
 
 This php package keeps very simple and is intended to visualize more complex data structures with the possibility to not display redundant data.
+
+## Installation
+Just install the package using compose.
+```bash
+compose require uklfr/json2xlsx
+```
+Afterwards, we recommend to include `vendor/autoload.php`.
+
+
+## Usage
+This packages offers 2 classes which are used to fetch and to format data.
+In [example](example/README.md) we prepared a fully featured and runnable use case which you can run and test.
+
 
 ## Requirements
 

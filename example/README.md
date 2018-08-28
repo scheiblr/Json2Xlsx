@@ -2,6 +2,20 @@
 
 This example framework shows a simple model of the usage of this package.
 
+## Usage
+You can simply try the package out by first starting the database and then running the script.
+The requirements are docker-compose and docker.
+
+```bash
+# starting the database
+docker-compose up -d
+
+# running a command
+docker-php.sh example1.php
+```
+
+## Database
+In `db` we show a sample database structure. Use this design to built you own export views an functions.
 
 ## Sample Data:
 
