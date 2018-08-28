@@ -12,9 +12,7 @@ use UKLFR\Json2Xlsx\Fetcher;
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-// "{$config['type']}:dbname={$config['db']};host={$config['host']}";
-// $conn = new \PDO($dbLocation, $config['user'], $config['password'], array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING));
-
+// database connection config
 $config = [
     'type' => 'pgsql', // could also be e.g. mysql, this is a PDO setting
     'db' => getenv('POSTGRES_DB'),
