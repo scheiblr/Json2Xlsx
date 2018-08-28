@@ -50,15 +50,15 @@ $$ language sql;
 -- use DISTINCT to remove duplicates
 create or replace view v_all_data as
 select distinct
+  'documentation dates' as "headline_dd",
+  document_id,
+  visit_date,
+  to_delete,
   'patient data' as "headline_p",
   patient_id,
   lastname,
   firstname,
   deceased,
-
-  'documentation dates' as "headline_dd",
-  f_get_documents(patient_id) as documents,
-
   'lab values' as "headline_lv",
   f_get_values(document_id) as lab_values
 from patient
