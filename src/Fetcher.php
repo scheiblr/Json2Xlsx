@@ -4,6 +4,8 @@ namespace UKLFR\Json2Xlsx;
 
 class Fetcher
 {
+    static public $fieldName = 'export';
+
     static function dbConnect($config, $db_settings = false) {
         try {
             $dbLocation = "{$config['type']}:dbname={$config['db']};host={$config['host']}";
@@ -30,7 +32,7 @@ class Fetcher
         }
     }
 
-    static function query($conn, $query, $fieldname = 'export') {
+    static function query($conn, $query) {
         $qry = $conn->prepare($query);
         $qry->execute();
 
@@ -40,7 +42,7 @@ class Fetcher
         $qryResult = $qry->fetch(\PDO::FETCH_ASSOC);
 
         //Decode JSON
-        $result = json_decode($qryResult[$fieldname], true);
+        $result = json_decode($qryResult[self::$fieldName], true);
 
         // free memory
         unset($qryResult);
@@ -63,11 +65,13 @@ class Fetcher
         // apply query specific db_settings
         self::applyDbSettings($conn, $db_settings);
 
+        $fieldName = self::$fieldName;
+
         // perform query
-        return  self::query($conn, "SELECT $schema.$function($param) as export;");
+        return  self::query($conn, "SELECT $schema.$function($param) as {$fieldName};");
     }
 
-    static function getDataFromJsonFile($filename, $key='export') {
-        return [$key => json_decode(file_get_contents($filename), true)];
+    static function getDataFromJsonFile($filename) {
+        return [self::$fieldName => json_decode(file_get_contents($filename), true)];
     }
 }
