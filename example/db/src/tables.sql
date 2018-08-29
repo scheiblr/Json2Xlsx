@@ -11,11 +11,11 @@ create table patient (
 );
 
 
-create table documentation_entity ( --df: mult=2.5
-  document_id SERIAL primary key,
+create table visits ( --df: mult=2.5
+  visit_id SERIAL primary key,
   patient_id integer references patient(patient_id),
-  visit_date date not null, -- df: start=2000-01-01 end=2017-06-01
-  to_delete boolean not null -- df: rate=0.75
+  visit_date date not null, -- df: start=2000-01-01 end=2018-06-01
+  news boolean not null -- df: rate=0.75
 );
 
 -- df lv: word=./word_lists/Lab-Values
@@ -24,10 +24,12 @@ create table lab_values (-- df: size=31
   name text unique not null -- df: use=lv
 );
 
--- df v: float
-create table lab_values_to_documentation_entity ( --df: mult=1.0
-  document_id integer references documentation_entity(document_id),
+
+-- df lf: float
+create table lab_values_to_patient ( --df: mult=3.0
+  patient_id integer references patient(patient_id),
   value_id integer references lab_values(value_id),
-  value decimal not null, -- df: use=v
-  primary key (value_id, document_id)
+  value decimal not null, -- df: use=lf
+  date_recorded date not null, -- df: start=2010-01-01 end=2017-06-01
+  primary key (value_id, patient_id)
 );

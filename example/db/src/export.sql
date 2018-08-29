@@ -1,46 +1,48 @@
 -- returns value tree given a documentation date id
 -- use JSONB here in order to make it compatible with DISTINCT (below)
-create or replace function f_get_values(_document_id INT)
+create or replace function f_get_values(_patient_id INT)
   returns jsonb as $$
 select coalesce(jsonb_agg(tmp),
   '[
     {
       "name": null,
-      "value": null
+      "value": null,
+      "date_recorded": null
     }
   ]' :: JSONB)
   from
   (select distinct
     name,
-    value
+    value,
+    date_recorded
   from
-    lab_values_to_documentation_entity
+    lab_values_to_patient
       join lab_values using(value_id)
   where
-    document_id = _document_id
+    patient_id = _patient_id
   ) AS tmp
 $$ language sql;
 
 -- exports documents tree given a patient_id
 -- use JSONB here in order to make it compatible with DISTINCT (below)
-create or replace function f_get_documents(_patient_id INT)
+create or replace function f_get_visits(_patient_id INT)
 returns jsonb as $$
 -- if there is no tuple, return the empty entity
 select coalesce(jsonb_agg(tmp),
   '[
     {
-      "document_id": null,
+      "visid_id": null,
       "visit_date": null,
-      "to_delete": null
+      "news": null
     }
   ]' :: JSONB)
   from
   (select distinct
-    document_id,
+    visit_id,
     visit_date,
-    to_delete
+    news
   from
-    documentation_entity
+    visits
   where
     patient_id = _patient_id
   ) AS tmp
@@ -50,19 +52,16 @@ $$ language sql;
 -- use DISTINCT to remove duplicates
 create or replace view v_all_data as
 select distinct
-  'documentation dates' as "headline_dd",
-  document_id,
-  visit_date,
-  to_delete,
   'patient data' as "headline_p",
   patient_id,
   lastname,
   firstname,
   deceased,
-  'lab values' as "headline_lv",
-  f_get_values(document_id) as lab_values
+  'visit details' as "headline_dd",
+  f_get_visits(patient_id),
+  'laboratory details' as "headline_lv",
+  f_get_values(patient_id) as lab_values
 from patient
-  join documentation_entity using(patient_id)
 order by patient_id;
 
 -- data export view
