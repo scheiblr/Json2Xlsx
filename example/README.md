@@ -3,10 +3,15 @@
 This example framework shows a simple model of the usage of this package.
 
 ## Usage
-You can simply try the package out by first starting the database and then running the script.
-The requirements are docker-compose and docker.
+You can simply try out the package by first starting the database and then running the script.
+Please install all packages in the root folder of this project with composer. The requirements are docker-compose, docker and composer.
 
 ```bash
+# install composer packages
+cd .. 
+composer install
+cd example
+
 # starting the database
 docker-compose up -d
 
@@ -19,13 +24,10 @@ In `db` we show a sample database structure. Use this design to built you own ex
 
 ## Sample Data:
 
-Use [datafiller](https://github.com/memsql/datafiller). You can just download it there:
+We generated the sample data wirh [datafiller](https://github.com/memsql/datafiller) based on the word lists of which we 
+took the name lists from [here](http://www.outpost9.com/files/WordLists.html). You can download it there datafiller as follows:
 
-```
+```bash
     wget -q https://raw.githubusercontent.com/memsql/datafiller/master/datafiller -O /usr/local/bin/datafiller \
 	    && chmod +x /usr/local/bin/datafiller
-```
-Name word lists from [here](http://www.outpost9.com/files/WordLists.html).
-```
-    cat db/src/tables.sql | datafiller > db/src/data.sql
 ```
