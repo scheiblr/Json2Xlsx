@@ -7,7 +7,7 @@ the possibility to not display redundant data.
 ## Installation
 Just install the package using compose.
 ```bash
-compose require uklfr/json2xlsx
+composer require uklfr/json2xlsx
 ```
 Afterwards, we recommend to include `vendor/autoload.php`.
 
