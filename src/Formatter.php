@@ -2,8 +2,19 @@
 
 namespace UKLFR\Json2Xlsx;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\SheetView;
+use OzdemirBurak\Iris\Color\Hex;
+use OzdemirBurak\Iris\Color\Hsl;
+
+
 class Formatter
 {
+    static $colors = [
+        '#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce',
+        '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'
+    ];
+
     static function println($text)
     {
         print($text . "\n");
@@ -135,14 +146,60 @@ class Formatter
         // fill freezeCols fields respectevily
         // i.e. fill empty rows
         for ($i = 1; $i < sizeof($result); ++$i) {
-            for ($j=0; $j < $freezeCols; ++$j) {
+            for ($j = 0; $j < $freezeCols; ++$j) {
                 $result[$i][$j] = $result[$i - 1][$j];
             }
         }
 
         return $result;
     }
-    
+
+    static function getColor($i)
+    {
+        $index = $i >= count(self::$colors) ? count(self::$colors) - 1 : $i;
+        return new Hex(self::$colors[$index]);
+    }
+
+    static function getColors()
+    {
+
+    }
+
+    static function rowColToString($row, $col)
+    {
+        return \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $row;
+    }
+
+    static function applyStyle($titles, $objSheet, $cols, $depth)
+    {
+        var_dump($titles);
+        foreach ($titles as $row => $subtitles) {
+            $i = 0;
+            $color = self::getColor($i);
+            foreach ($subtitles as $col => $title) {
+                // skip the first column
+                if ($col > 0 && $title) {
+                    $color = self::getColor(++$i);
+                }
+
+                $alpha = 'FF';
+
+                $color = $color->toHsl()->desaturate(20)->toHex();
+
+                $styleArray = [
+                    'fill' => [
+                        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                        'startColor' => [
+                            'argb' => $alpha . $color,
+                        ],
+                    ],
+                ];
+
+                $objSheet->getStyle(self::rowColToString($row, $col))->applyFromArray($styleArray);
+            }
+        }
+    }
+
     static function fillSheet(&$objSheet, $sheetName, $entities, $freezeCols = 1, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
         // get headlines
@@ -181,17 +238,19 @@ class Formatter
         // setup excel sheet
         $objSheet->setTitle($sheetName);
 
-        $grid = self::titleToRows($titles);
+        $titleGrid = self::titleToRows($titles);
+        $grid = $titleGrid;
 
         $depth = self::array_depth($titles) + ($headlines !== []);
 
         // freeze rows
-        $objSheet->freezePaneByColumnAndRow($freezeCols+1, $depth + 1);
+        $objSheet->freezePaneByColumnAndRow($freezeCols + 1, $depth + 1);
 
         // if there are headlines, add it to the top of the grid
-        if (count($headlines) > 0)
+        if (count($headlines) > 0) {
             array_unshift($grid, $headlines);
-
+            array_unshift($titleGrid, $headlines);
+        }
         // count the cols (without headlines)
         $cols = sizeof($grid[0]);
 
@@ -207,6 +266,10 @@ class Formatter
 
 // save it to xls
         self::arrayToXls($grid, $objSheet);
+
+
+        // TODO: apply alternating coloring
+        self::applyStyle($titleGrid, $objSheet, $cols, $depth);
 
 // set first rows bold
         $objSheet
@@ -234,9 +297,6 @@ class Formatter
             // inc i
             ++$i;
         }
-
-// TODO: apply alternating coloring
-// self::applyStyle($headlines, $objSheet, $cols, $freezeCols);
 
         // save file
         $objWriter = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($obj, 'Xlsx');

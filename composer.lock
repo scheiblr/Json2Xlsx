@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d163f51b97969bbeb228112e8a036de6",
+    "content-hash": "38bd1f221972a9dffa998fe46520d34c",
     "packages": [
         {
             "name": "markbaker/complex",
@@ -100,6 +100,65 @@
                 "mathematics"
             ],
             "time": "2018-07-31T08:38:40+00:00"
+        },
+        {
+            "name": "ozdemirburak/iris",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ozdemirburak/iris.git",
+                "reference": "85060ed9c3dd0a09385e9c2416a9d8f71e844090"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ozdemirburak/iris/zipball/85060ed9c3dd0a09385e9c2416a9d8f71e844090",
+                "reference": "85060ed9c3dd0a09385e9c2416a9d8f71e844090",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0|~6.0",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OzdemirBurak\\Iris\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Burak Özdemir",
+                    "email": "mail@burakozdemir.co.uk",
+                    "homepage": "https://burakozdemir.co.uk"
+                }
+            ],
+            "description": "PHP library for color manipulation and conversion.",
+            "homepage": "https://github.com/ozdemirburak/iris",
+            "keywords": [
+                "color",
+                "conversion",
+                "hex",
+                "hsl",
+                "hsla",
+                "hsv",
+                "manipulation",
+                "rgb",
+                "rgba",
+                "transformation"
+            ],
+            "time": "2018-04-08T13:05:27+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",

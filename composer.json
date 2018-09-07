@@ -10,7 +10,8 @@
   ],
   "require": {
     "php": ">=7.0",
-    "phpoffice/phpspreadsheet": "^1.4"
+    "phpoffice/phpspreadsheet": "^1.4",
+    "ozdemirburak/iris": "^1.2"
   },
   "require-dev": {
     "vlucas/phpdotenv": "^2.5"
