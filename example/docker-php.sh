@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ -z $1 ]; then
+    echo "please define a file which should be run:"
+    echo "   ./docker-php.sh somefile.php"
+    exit
+fi
+
 docker run \
         --net json2xlsx-example_default \
         -it \
