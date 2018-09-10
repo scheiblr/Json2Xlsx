@@ -2,6 +2,7 @@
 
 namespace UKLFR\Json2Xlsx;
 
+use OzdemirBurak\Iris\Color\Rgb;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\SheetView;
 use OzdemirBurak\Iris\Color\Hex;
@@ -15,11 +16,10 @@ class Formatter
         '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'
     ];
 
-    static function println($text)
-    {
-        print($text . "\n");
-    }
-
+    /**
+     * @param $array
+     * @param $sheet
+     */
     static function arrayToXls($array, &$sheet)
     {
         foreach ($array as $row_index => $row) {
@@ -29,6 +29,11 @@ class Formatter
         }
     }
 
+    /**
+     * @param $titles
+     * @param array $funcIsHeadline
+     * @return array
+     */
     static function titleToRows($titles, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
         $result = [0 => []];
@@ -42,6 +47,14 @@ class Formatter
         return $result;
     }
 
+    /**
+     * @param $array
+     * @param $titles
+     * @param $col
+     * @param $row
+     * @param int $depth
+     * @param $funcIsHeadline
+     */
     private static function titleToRowsHelp(&$array, $titles, &$col, $row, $depth = 0, $funcIsHeadline)
     {
         foreach ($titles as $key => $title) {
@@ -67,11 +80,19 @@ class Formatter
         }
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
     static function isHeadline($key)
     {
         return str_replace('headline', '', $key) !== $key;
     }
 
+    /**
+     * @param array $array
+     * @return int
+     */
     static function array_depth(array $array)
     {
         $max_depth = 1;
@@ -89,7 +110,14 @@ class Formatter
         return $max_depth;
     }
 
-    static function entitiyToRow($entity, $cols, $freezeCols, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
+    /**
+     * @param $entity
+     * @param $cols
+     * @param $freezeCols
+     * @param array $funcIsHeadline
+     * @return array
+     */
+    private static function entitiyToRow($entity, $cols, $freezeCols, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
         $maxEntriesPerCol = 1;
         foreach ($entity as $field) {
@@ -154,31 +182,65 @@ class Formatter
         return $result;
     }
 
-    static function getColor($i)
+    /**
+     * @param $i
+     * @return Hex
+     * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
+     */
+    private static function getColor($i)
     {
         $index = $i >= count(self::$colors) ? count(self::$colors) - 1 : $i;
         return new Hex(self::$colors[$index]);
     }
 
-    static function getColors()
-    {
-
-    }
-
-    static function rowColToString($row, $col)
+    /**
+     * @param $row
+     * @param $col
+     * @return string
+     */
+    private static function rowColToString($row, $col)
     {
         return \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $row;
     }
 
-    static function toARGB($hex, $alpha = 'FF')
+    /**
+     * @param Hex $hex
+     * @param string $alpha
+     * @return string
+     */
+    private static function toARGB(Hex $hex, $alpha = 'FF')
     {
         return strtoupper($alpha . str_replace('#', '', $hex));
     }
 
-    static function applyStyle($titles, $objSheet, $nRows, $nCols, $depth)
+    /**
+     * @param Hex $hex
+     * @return float
+     * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
+     */
+    static function preceivedBrightness(Hex $hex)
     {
-//        var_dump($titles);
-//        $rowKeys = array_keys($titles);
+        $rgb = $hex->toRgb();
+
+        // http://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
+        $R = $rgb->red() * $rgb->red() * .241;
+        $B = $rgb->green() * $rgb->green() * .691;
+        $G = $rgb->blue() * $rgb->blue() * .068;
+
+        return sqrt($R + $B + $G);
+    }
+
+    /**
+     * @param $titles
+     * @param $objSheet
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    static function applyColors($titles, $objSheet)
+    {
+        $nRows = $objSheet->getHighestRow();
+        $nCols = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($objSheet->getHighestColumn());
+
+        echo 'Cols: '.$nCols."\n";
 
         $titlesByCol = [];
         foreach ($titles as $row => $subtitles) {
@@ -193,8 +255,7 @@ class Formatter
         // sort the cols
         ksort($titlesByCol);
 
-        var_dump($titlesByCol);
-
+        // initialize some variables
         $i = 0;
         $groupColor = self::getColor($i);
         $groupCol = 0;
@@ -205,14 +266,15 @@ class Formatter
                 if (!($col == 0 && $row == 0) && ($row == 0 && $title)) {
                     $groupColor = self::getColor(++$i);
                     $groupCol = $col;
-                    echo $row . '|' . $col . ': changed to ' . $i;
                 }
 
                 $color = $groupColor->lighten(($col-$groupCol) * 5);
-
-                echo self::toARGB($color) . '| ';
-
                 $styleArray = [
+                    'font' => [
+                        'color' => [
+                            'argb' => self::preceivedBrightness($color) < 130 ? 'FFFFFFFF' : 'FF000000'
+                        ]
+                    ],
                     'fill' => [
                         'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
                         'startColor' => [
@@ -223,11 +285,22 @@ class Formatter
 
                 echo $row . '|' . $col . "\n";
 
-                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1))->applyFromArray($styleArray);
+                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1).':'.self::rowColToString($nRows, $col + 1))->applyFromArray($styleArray);
+                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1).':'.self::rowColToString($row+1, $nCols))->applyFromArray($styleArray);
             }
         }
+
+        // alternating coloring
+
     }
 
+    /**
+     * @param $objSheet
+     * @param $sheetName
+     * @param $entities
+     * @param int $freezeCols
+     * @param array $funcIsHeadline
+     */
     static function fillSheet(&$objSheet, $sheetName, $entities, $freezeCols = 1, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
         // get headlines
@@ -281,10 +354,9 @@ class Formatter
         }
         // count the cols (without headlines)
         $nCols = sizeof($grid[0]);
-        $nRows = sizeof($grid);
 
 
-//    println('xml 2 array');
+        //    println('xml 2 array');
         foreach ($entities as $entity) {
             $rows = self::entitiyToRow($entity, $nCols, $freezeCols);
 
@@ -293,21 +365,37 @@ class Formatter
             }
         }
 
-// save it to xls
+        // save it to xls
         self::arrayToXls($grid, $objSheet);
 
 
-        // TODO: apply alternating coloring
-        self::applyStyle($titleGrid, $objSheet, $nRows, $nCols, $depth);
+        // apply coloring
+        self::applyColors($titleGrid, $objSheet);
 
-// set first rows bold
-        $objSheet
-            ->getStyle("1:$depth")
+        self::formatHeader($depth, $objSheet);
+    }
+
+    /**
+     * @param $depth
+     * @param $sheet
+     */
+    static function formatHeader($depth, &$sheet) {
+        // set headline rows bold and italic
+        $range = self::rowColToString(1,1) . ':' . $sheet->getHighestColumn().$depth;
+        $sheet
+            ->getStyle($range)
             ->getFont()
             ->setBold(true)
             ->setItalic(true);
     }
 
+    /**
+     * @param $data
+     * @param $filename
+     * @param int $freezeCols
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
     static function generateXLS($data, $filename, $freezeCols = 1)
     {
 
