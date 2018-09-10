@@ -170,32 +170,60 @@ class Formatter
         return \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $row;
     }
 
-    static function applyStyle($titles, $objSheet, $cols, $depth)
+    static function toARGB($hex, $alpha = 'FF')
     {
-        var_dump($titles);
+        return strtoupper($alpha . str_replace('#', '', $hex));
+    }
+
+    static function applyStyle($titles, $objSheet, $nRows, $nCols, $depth)
+    {
+//        var_dump($titles);
+//        $rowKeys = array_keys($titles);
+
+        $titlesByCol = [];
         foreach ($titles as $row => $subtitles) {
-            $i = 0;
-            $color = self::getColor($i);
             foreach ($subtitles as $col => $title) {
-                // skip the first column
-                if ($col > 0 && $title) {
-                    $color = self::getColor(++$i);
+                // create array if not existent
+                if (!is_array($titlesByCol[$col])) $titlesByCol[$col] = [];
+
+                $titlesByCol[$col][$row] = $title;
+            }
+        }
+
+        // sort the cols
+        ksort($titlesByCol);
+
+        var_dump($titlesByCol);
+
+        $i = 0;
+        $groupColor = self::getColor($i);
+        $groupCol = 0;
+
+        foreach ($titlesByCol as $col => $subtitles) {
+            foreach ($subtitles as $row => $title) {
+                // neglect very first cell
+                if (!($col == 0 && $row == 0) && ($row == 0 && $title)) {
+                    $groupColor = self::getColor(++$i);
+                    $groupCol = $col;
+                    echo $row . '|' . $col . ': changed to ' . $i;
                 }
 
-                $alpha = 'FF';
+                $color = $groupColor->lighten(($col-$groupCol) * 5);
 
-                $color = $color->toHsl()->desaturate(20)->toHex();
+                echo self::toARGB($color) . '| ';
 
                 $styleArray = [
                     'fill' => [
                         'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
                         'startColor' => [
-                            'argb' => $alpha . $color,
+                            'argb' => self::toARGB($color)
                         ],
                     ],
                 ];
 
-                $objSheet->getStyle(self::rowColToString($row, $col))->applyFromArray($styleArray);
+                echo $row . '|' . $col . "\n";
+
+                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1))->applyFromArray($styleArray);
             }
         }
     }
@@ -252,12 +280,13 @@ class Formatter
             array_unshift($titleGrid, $headlines);
         }
         // count the cols (without headlines)
-        $cols = sizeof($grid[0]);
+        $nCols = sizeof($grid[0]);
+        $nRows = sizeof($grid);
 
 
 //    println('xml 2 array');
         foreach ($entities as $entity) {
-            $rows = self::entitiyToRow($entity, $cols, $freezeCols);
+            $rows = self::entitiyToRow($entity, $nCols, $freezeCols);
 
             foreach ($rows as $row) {
                 array_push($grid, $row);
@@ -269,7 +298,7 @@ class Formatter
 
 
         // TODO: apply alternating coloring
-        self::applyStyle($titleGrid, $objSheet, $cols, $depth);
+        self::applyStyle($titleGrid, $objSheet, $nRows, $nCols, $depth);
 
 // set first rows bold
         $objSheet
