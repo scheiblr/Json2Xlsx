@@ -235,12 +235,12 @@ class Formatter
      * @param $objSheet
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    static function applyColors($titles, $objSheet)
+    static function applyColors($titles, $objSheet, $depth)
     {
         $nRows = $objSheet->getHighestRow();
         $nCols = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($objSheet->getHighestColumn());
 
-        echo 'Cols: '.$nCols."\n";
+        // TODO: dynamic interpolation of the color (count the fields of the grouping)
 
         $titlesByCol = [];
         foreach ($titles as $row => $subtitles) {
@@ -290,8 +290,46 @@ class Formatter
             }
         }
 
-        // alternating coloring
+        // TODO: alternating coloring
+        $tmp = $objSheet->getCellByColumnAndRow(1,$depth+1)->getValue();
+        $skip = false;
+        for ($row=$depth+1; $row<=$nRows; ++$row) {
 
+            // count how many rows are in one group
+            $i=0;
+            while($tmp == $objSheet->getCellByColumnAndRow(1,$row)->getValue()) {
+                ++$i;
+                ++$row;
+            }
+
+            // get next tmp
+            $tmp = $objSheet->getCellByColumnAndRow(1,$row+1)->getValue();
+
+            if (!$skip) {
+                for ($col = 1; $col <= $nCols; ++$col) {
+
+                    $objStyle = $objSheet->getStyle(self::rowColToString($row - $i - 1, $col) . ':' . self::rowColToString($row-1, $col));
+
+                    $color = new Hex('#' . $objStyle->getFill()->getStartColor()->getRGB());
+
+                    $styleArray = [
+                        'fill' => [
+                            'startColor' => [
+                                'argb' => self::toARGB($color->lighten(3))
+                            ],
+                        ],
+                    ];
+
+                    $objStyle->applyFromArray($styleArray);
+                }
+            }
+
+            // alternation
+            $skip = !$skip;
+
+//            $objSheet->getStyle(self::rowColToString($row + 1, 1).':'.self::rowColToString($nRows, $nCols))->applyFromArray($styleArray);
+      echo $objSheet->getCellByColumnAndRow(1,$row)->getValue(). "\n";
+        }
     }
 
     /**
@@ -368,10 +406,8 @@ class Formatter
         // save it to xls
         self::arrayToXls($grid, $objSheet);
 
-
-        // apply coloring
-        self::applyColors($titleGrid, $objSheet);
-
+        // apply coloring and format header
+        self::applyColors($titleGrid, $objSheet, $depth);
         self::formatHeader($depth, $objSheet);
     }
 
