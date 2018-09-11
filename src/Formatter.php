@@ -212,7 +212,7 @@ class Formatter
      */
     private static function getColor($i)
     {
-        return ($i >= count(self::$colors)) ? self::randomColor() - 1 : new Hex(self::$colors[$i]);
+        return ($i >= count(self::$colors)) ? self::randomColor() : new Hex(self::$colors[$i]);
     }
 
     /**

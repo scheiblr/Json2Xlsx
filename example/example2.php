@@ -30,6 +30,10 @@ $function = 'f_export';
 $param = '(SELECT array_agg(patient_id) :: INT[] FROM patient WHERE NOT deceased)';
 $export = Fetcher::getDataFromDBFunc($conn, $schema, $function, $param);
 
+// set different colors.
+// here: empty, thus completely random
+Formatter::$colors=[];
+
 // format
 Formatter::generateXLS([
     'patients' => $export
