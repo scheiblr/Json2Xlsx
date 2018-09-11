@@ -2,12 +2,7 @@
 
 namespace UKLFR\Json2Xlsx;
 
-use OzdemirBurak\Iris\Color\Rgb;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Worksheet\SheetView;
 use OzdemirBurak\Iris\Color\Hex;
-use OzdemirBurak\Iris\Color\Hsl;
-
 
 class Formatter
 {
@@ -376,12 +371,15 @@ class Formatter
         }
     }
 
+
     /**
      * @param $objSheet
      * @param $sheetName
      * @param $entities
      * @param int $freezeCols
      * @param array $funcIsHeadline
+     * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     static function fillSheet(&$objSheet, $sheetName, $entities, $freezeCols = 1, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
@@ -470,10 +468,12 @@ class Formatter
             ->setItalic(true);
     }
 
+
     /**
      * @param $data
      * @param $filename
      * @param int $freezeCols
+     * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
