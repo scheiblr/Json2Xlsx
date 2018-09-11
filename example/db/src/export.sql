@@ -58,7 +58,7 @@ select distinct
   firstname,
   deceased,
   'visit details' as "headline_dd",
-  f_get_visits(patient_id),
+  f_get_visits(patient_id) as "visits",
   'laboratory details' as "headline_lv",
   f_get_values(patient_id) as lab_values
 from patient
