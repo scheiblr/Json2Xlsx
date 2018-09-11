@@ -34,6 +34,15 @@ $param = $param = 'ARRAY['.implode(',', $ids).'] :: INT[]';;
 
 $export = Fetcher::getDataFromDBFunc($conn, $schema, $function, $param);
 
+// set different colors.
+Formatter::$colors=['#999000', '#333333'];
+
+// set min color brightness to 35 percent (default is 20)
+Formatter::$alternatingColorMinBrightnessPercent = 50;
+
+// set the row alternating brightness distance to 5 (default is 3)
+Formatter::$alternatingColorMinBrightnessPercent = 5;
+
 // format
 Formatter::generateXLS([
     'patients' => $export
