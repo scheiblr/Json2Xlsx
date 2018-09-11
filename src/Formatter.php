@@ -18,6 +18,9 @@ class Formatter
 
     static $alternatingColorDistanceRow = 3;
 
+    // in percentage
+    static $alternatingColorMinBrightnessPercent = 20;
+
     /**
      * @param $array
      * @param $sheet
@@ -249,9 +252,12 @@ class Formatter
         return sqrt($R + $B + $G);
     }
 
+
     /**
      * @param $titles
      * @param $objSheet
+     * @param $depth
+     * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     static function applyColors($titles, $objSheet, $depth)
@@ -276,6 +282,25 @@ class Formatter
         $i = 0;
         $groupColor = self::getColor($i);
         $groupCol = 0;
+        $keys = array_keys($titles[0]);
+
+        $getDistance = function($nCols, $col, $groupCol, $titles, $keys) {
+            $result = array_search($groupCol, $keys);
+
+            return (count($keys) < $result+1) ?
+                $keys[$result+1] : $nCols - $groupCol;
+        };
+
+        // color brightness enhancement normalization
+        $getFactor = function($col, $groupCol, $groupSize) {
+            $a = 0;
+            $b = (100-self::$alternatingColorMinBrightnessPercent)/100;
+            return ($b - $a) * (($col - $groupCol) / $groupSize) + $a;
+        };
+
+        // initialize some more values
+        $groupSize = $getDistance($nCols, 0, $groupCol, $titles, $keys);
+        $factor = $getFactor(0, $groupCol, $groupSize);
 
         foreach ($titlesByCol as $col => $subtitles) {
             foreach ($subtitles as $row => $title) {
@@ -283,9 +308,16 @@ class Formatter
                 if (!($col == 0 && $row == 0) && ($row == 0 && $title)) {
                     $groupColor = self::getColor(++$i);
                     $groupCol = $col;
+                    $groupSize = $getDistance($nCols, $col, $groupCol, $titles, $keys);
                 }
 
-                $color = $groupColor->lighten(($col - $groupCol) * 5);
+                // only if title and not the very first col, recompute factor
+                if($title && $col !== 0) {
+                    $factor = $getFactor($col, $groupCol, $groupSize);
+                }
+
+                // estimate color
+                $color = $groupColor->lighten($factor * 100);
                 $styleArray = [
                     'font' => [
                         'color' => [
@@ -300,8 +332,6 @@ class Formatter
                     ],
                 ];
 
-                echo $row . '|' . $col . "\n";
-
                 $objSheet->getStyle(self::rowColToString($row + 1, $col + 1) . ':' . self::rowColToString($nRows, $col + 1))->applyFromArray($styleArray);
                 $objSheet->getStyle(self::rowColToString($row + 1, $col + 1) . ':' . self::rowColToString($row + 1, $nCols))->applyFromArray($styleArray);
             }
@@ -310,7 +340,7 @@ class Formatter
         // alternating coloring of rows
         $tmp = $objSheet->getCellByColumnAndRow(1, $depth + 1)->getValue();
         $skip = false;
-        for ($row = $depth + 1; $row <= $nRows; ++$row) {
+        for ($row = $depth + 2; $row <= $nRows; ++$row) {
 
             // count how many rows are in one group
             $i = 0;
@@ -341,11 +371,8 @@ class Formatter
                 }
             }
 
-            // alternation
+            // alternation switch
             $skip = !$skip;
-
-//            $objSheet->getStyle(self::rowColToString($row + 1, 1).':'.self::rowColToString($nRows, $nCols))->applyFromArray($styleArray);
-            echo $objSheet->getCellByColumnAndRow(1, $row)->getValue() . "\n";
         }
     }
 
