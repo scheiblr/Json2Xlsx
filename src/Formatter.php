@@ -16,6 +16,8 @@ class Formatter
         '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'
     ];
 
+    static $alternatingColorDistanceRow = 3;
+
     /**
      * @param $array
      * @param $sheet
@@ -182,6 +184,24 @@ class Formatter
         return $result;
     }
 
+
+    /**
+     * @return string
+     */
+    private function randomColorPart() {
+        return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+    }
+
+
+    /**
+     * @return Hex
+     * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
+     */
+    private function randomColor() {
+        return new Hex('#' . self::randomColorPart() . self::randomColorPart() . self::randomColorPart());
+    }
+
+
     /**
      * @param $i
      * @return Hex
@@ -189,8 +209,7 @@ class Formatter
      */
     private static function getColor($i)
     {
-        $index = $i >= count(self::$colors) ? count(self::$colors) - 1 : $i;
-        return new Hex(self::$colors[$index]);
+        return ($i >= count(self::$colors)) ? self::randomColor() - 1 : new Hex(self::$colors[$i]);
     }
 
     /**
@@ -240,8 +259,6 @@ class Formatter
         $nRows = $objSheet->getHighestRow();
         $nCols = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($objSheet->getHighestColumn());
 
-        // TODO: dynamic interpolation of the color (count the fields of the grouping)
-
         $titlesByCol = [];
         foreach ($titles as $row => $subtitles) {
             foreach ($subtitles as $col => $title) {
@@ -268,7 +285,7 @@ class Formatter
                     $groupCol = $col;
                 }
 
-                $color = $groupColor->lighten(($col-$groupCol) * 5);
+                $color = $groupColor->lighten(($col - $groupCol) * 5);
                 $styleArray = [
                     'font' => [
                         'color' => [
@@ -285,37 +302,37 @@ class Formatter
 
                 echo $row . '|' . $col . "\n";
 
-                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1).':'.self::rowColToString($nRows, $col + 1))->applyFromArray($styleArray);
-                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1).':'.self::rowColToString($row+1, $nCols))->applyFromArray($styleArray);
+                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1) . ':' . self::rowColToString($nRows, $col + 1))->applyFromArray($styleArray);
+                $objSheet->getStyle(self::rowColToString($row + 1, $col + 1) . ':' . self::rowColToString($row + 1, $nCols))->applyFromArray($styleArray);
             }
         }
 
-        // TODO: alternating coloring
-        $tmp = $objSheet->getCellByColumnAndRow(1,$depth+1)->getValue();
+        // alternating coloring of rows
+        $tmp = $objSheet->getCellByColumnAndRow(1, $depth + 1)->getValue();
         $skip = false;
-        for ($row=$depth+1; $row<=$nRows; ++$row) {
+        for ($row = $depth + 1; $row <= $nRows; ++$row) {
 
             // count how many rows are in one group
-            $i=0;
-            while($tmp == $objSheet->getCellByColumnAndRow(1,$row)->getValue()) {
+            $i = 0;
+            while ($tmp == $objSheet->getCellByColumnAndRow(1, $row)->getValue()) {
                 ++$i;
                 ++$row;
             }
 
             // get next tmp
-            $tmp = $objSheet->getCellByColumnAndRow(1,$row+1)->getValue();
+            $tmp = $objSheet->getCellByColumnAndRow(1, $row + 1)->getValue();
 
             if (!$skip) {
                 for ($col = 1; $col <= $nCols; ++$col) {
 
-                    $objStyle = $objSheet->getStyle(self::rowColToString($row - $i - 1, $col) . ':' . self::rowColToString($row-1, $col));
+                    $objStyle = $objSheet->getStyle(self::rowColToString($row - $i - 1, $col) . ':' . self::rowColToString($row - 1, $col));
 
                     $color = new Hex('#' . $objStyle->getFill()->getStartColor()->getRGB());
 
                     $styleArray = [
                         'fill' => [
                             'startColor' => [
-                                'argb' => self::toARGB($color->lighten(3))
+                                'argb' => self::toARGB($color->lighten(self::$alternatingColorDistanceRow))
                             ],
                         ],
                     ];
@@ -328,7 +345,7 @@ class Formatter
             $skip = !$skip;
 
 //            $objSheet->getStyle(self::rowColToString($row + 1, 1).':'.self::rowColToString($nRows, $nCols))->applyFromArray($styleArray);
-      echo $objSheet->getCellByColumnAndRow(1,$row)->getValue(). "\n";
+            echo $objSheet->getCellByColumnAndRow(1, $row)->getValue() . "\n";
         }
     }
 
@@ -415,9 +432,10 @@ class Formatter
      * @param $depth
      * @param $sheet
      */
-    static function formatHeader($depth, &$sheet) {
+    static function formatHeader($depth, &$sheet)
+    {
         // set headline rows bold and italic
-        $range = self::rowColToString(1,1) . ':' . $sheet->getHighestColumn().$depth;
+        $range = self::rowColToString(1, 1) . ':' . $sheet->getHighestColumn() . $depth;
         $sheet
             ->getStyle($range)
             ->getFont()
