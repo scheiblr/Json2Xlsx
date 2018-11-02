@@ -8,10 +8,20 @@ class Fetcher
 
     static function dbConnect($config, $db_settings = false, $charset='utf8') {
         try {
-            $dbLocation = "{$config['type']}:dbname={$config['db']};host={$config['host']};charset={$charset}";
+            $dbLocation = "{$config['type']}:dbname={$config['db']};host={$config['host']}";
+
+            if ($config['type'] == 'mysql') {
+                $dbLocation .= ";charset={$charset}";
+            }
+
             $conn = new \PDO($dbLocation, $config['user'], $config['password'], array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING));
 
             self::applyDbSettings($conn, $db_settings);
+
+            if ($config['type'] == 'pgsql') {
+                $qry = $conn->prepare("SET CLIENT_ENCODING TO '$charset';");
+                $qry->execute();
+            }
 
             return $conn;
         } catch (\PDOException $e) {
