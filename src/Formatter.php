@@ -264,7 +264,7 @@ class Formatter
         foreach ($titles as $row => $subtitles) {
             foreach ($subtitles as $col => $title) {
                 // create array if not existent
-                if (!is_array($titlesByCol[$col])) $titlesByCol[$col] = [];
+                if (!key_exists($col, $titlesByCol) || !is_array($titlesByCol[$col])) $titlesByCol[$col] = [];
 
                 $titlesByCol[$col][$row] = $title;
             }
