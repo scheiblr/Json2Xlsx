@@ -377,11 +377,13 @@ class Formatter
      * @param $sheetName
      * @param $entities
      * @param int $freezeCols
+     * @param boolean $enableColoring
      * @param array $funcIsHeadline
      * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    static function fillSheet(&$objSheet, $sheetName, $entities, $freezeCols = 1, $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
+    static function fillSheet(&$objSheet, $sheetName, $entities, $freezeCols = 1, $enableColoring,
+                              $funcIsHeadline = ['UKLFR\Json2Xlsx\Formatter', 'isHeadline'])
     {
         // get headlines
         $headlines = [];
@@ -449,7 +451,9 @@ class Formatter
         self::arrayToXls($grid, $objSheet);
 
         // apply coloring and format header
-        self::applyColors($titleGrid, $objSheet, $depth);
+        if ($enableColoring)
+            self::applyColors($titleGrid, $objSheet, $depth);
+
         self::formatHeader($depth, $objSheet);
     }
 
@@ -473,11 +477,12 @@ class Formatter
      * @param $data
      * @param $filename
      * @param int $freezeCols
+     * @param boolean $enableColoring
      * @throws \OzdemirBurak\Iris\Exceptions\InvalidColorException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    static function generateXLS($data, $filename, $freezeCols = 1)
+    static function generateXLS($data, $filename, $freezeCols = 1, $enableColoring = true)
     {
 
         $obj = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
@@ -489,7 +494,8 @@ class Formatter
                 $obj->getActiveSheet() : $obj->createSheet($i);
             self::fillSheet(
                 $sheet, $key, $sheetData,
-                is_array($freezeCols) ? $freezeCols[$i] : $freezeCols
+                is_array($freezeCols) ? $freezeCols[$i] : $freezeCols,
+                $enableColoring
             );
 
             // inc i
