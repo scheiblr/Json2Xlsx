@@ -11,6 +11,10 @@ class Formatter
         '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'
     ];
 
+    // if there are more columns than given colors, repeat the coloring of $colors
+    // if false, first $colors will be used an then random ones
+    static $repeatColors = true;
+
     static $alternatingColorDistanceRow = 3;
 
     // in percentage
@@ -207,7 +211,12 @@ class Formatter
      */
     private static function getColor($i)
     {
-        return ($i >= count(self::$colors)) ? self::randomColor() : new Hex(self::$colors[$i]);
+        $n = count(self::$colors);
+        if ($this->repeatColors) {
+            return new Hex(self::$colors[$i % $n]);
+        } else {
+            return ($i >= $n) ? self::randomColor() : new Hex(self::$colors[$i]);
+        }
     }
 
     /**
