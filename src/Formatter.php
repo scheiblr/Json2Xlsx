@@ -212,7 +212,7 @@ class Formatter
     private static function getColor($i)
     {
         $n = count(self::$colors);
-        if ($this->repeatColors) {
+        if (self::$repeatColors) {
             return new Hex(self::$colors[$i % $n]);
         } else {
             return ($i >= $n) ? self::randomColor() : new Hex(self::$colors[$i]);
