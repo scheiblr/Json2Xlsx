@@ -9,7 +9,7 @@ Please install all packages in the root folder of this project with composer. Th
 ```bash
 # install composer packages
 cd .. 
-composer install
+composer install --ignore-platform-reqs
 cd example
 
 # starting the database
