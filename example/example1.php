@@ -9,16 +9,16 @@ use UKLFR\Json2Xlsx\Formatter;
 use UKLFR\Json2Xlsx\Fetcher;
 
 // load .env file in order to get db information
-$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // database connection config
 $config = [
     'type' => 'pgsql', // could also be e.g. mysql, this is a PDO setting
-    'db' => getenv('POSTGRES_DB'),
-    'host' => getenv('POSTGRES_HOST'),
-    'user' => getenv('POSTGRES_USER'),
-    'password' => getenv('POSTGRES_PASSWORD')
+    'db' => $_ENV['POSTGRES_DB'],
+    'host' => $_ENV['POSTGRES_HOST'],
+    'user' => $_ENV['POSTGRES_USER'],
+    'password' => $_ENV['POSTGRES_PASSWORD']
 ];
 
 // establish db connection
