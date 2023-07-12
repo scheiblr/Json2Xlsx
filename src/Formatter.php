@@ -354,7 +354,7 @@ class Formatter
             }
 
             // get next tmp
-            $tmp = $objSheet->getCellByColumnAndRow(1, $row + 1)->getValue();
+            $tmp = $objSheet->getCellByColumnAndRow(1, $row)->getValue();
 
             if (!$skip) {
                 for ($col = 1; $col <= $nCols; ++$col) {
