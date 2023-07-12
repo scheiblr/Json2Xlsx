@@ -16,7 +16,7 @@ cd example
 docker-compose up -d
 
 # running a command
-docker-php.sh example1.php
+./docker-php.sh example1.php
 ```
 
 ## Database
