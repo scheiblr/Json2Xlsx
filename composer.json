@@ -14,7 +14,7 @@
     "ozdemirburak/iris": "^2.5"
   },
   "require-dev": {
-    "vlucas/phpdotenv": "^5.3"
+    "vlucas/phpdotenv": "^5.5"
   },
   "autoload": {
     "psr-4": {
