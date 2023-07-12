@@ -342,16 +342,16 @@
         },
         {
             "name": "ozdemirburak/iris",
-            "version": "2.3.1",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ozdemirburak/iris.git",
-                "reference": "7bbb5868afbb9f95dfb9110650cbe994027792d2"
+                "reference": "239707401e09b9bab2baf3383343a8b9dea745db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ozdemirburak/iris/zipball/7bbb5868afbb9f95dfb9110650cbe994027792d2",
-                "reference": "7bbb5868afbb9f95dfb9110650cbe994027792d2",
+                "url": "https://api.github.com/repos/ozdemirburak/iris/zipball/239707401e09b9bab2baf3383343a8b9dea745db",
+                "reference": "239707401e09b9bab2baf3383343a8b9dea745db",
                 "shasum": ""
             },
             "require": {
@@ -383,6 +383,7 @@
                 "color",
                 "conversion",
                 "hex",
+                "hexa",
                 "hsl",
                 "hsla",
                 "hsv",
@@ -391,7 +392,7 @@
                 "rgba",
                 "transformation"
             ],
-            "time": "2021-01-30T23:13:19+00:00"
+            "time": "2022-02-13T20:50:58+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
